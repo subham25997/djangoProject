@@ -1,0 +1,6 @@
+{
+user_id: int,
+firstName: String,
+lastName: String,
+
+}

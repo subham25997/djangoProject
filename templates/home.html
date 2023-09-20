@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-12 py-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="toolbar">
+                    <h4 class="toolbar-title">List of Products</h4>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <th>Product Id</th>
+                        <th>Product Name</th>
+                        <th>In Stock</th>
+                        <th>Price</th>
+                    </thead>
+                    <tbody id="products">
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .card.widgets {
+        border-left: 4px solid blue;
+    }
+</style>
+<script>
+   window.onload = function() {
+        getAllProducts();
+    }
+    function getAllProducts() {
+        products = [];
+        $.ajax({
+            url: '/get_all_products/',
+            method: 'get',
+            success: function (response) {
+                products = response;
+                $(products).each(function (index, product) {
+                    console.log(product);
+                    $("#products").append("<tr> " +
+                        "<td> " + product.pk + " </td>" + 
+                        "<td> " + product.fields.name + " </td>" + 
+                        "<td> " + product.fields.stock_qty + " </td>" +
+                        "<td> " + product.fields.price + " </td>" +
+                    "</tr>");
+                })
+            },
+            error: function (error) {
+                console.log("Error ", error)
+            }
+        });
+    }
+</script>
+{% endblock %}

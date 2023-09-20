@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Registration
+    </title>
+    <style>
+        .main {
+            min-height: 100vh;
+            width: 100%;
+            background: #5c97e2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card  {
+            width: 500px;
+            /* max-height: calc(100vh - 60px); */
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 1px 7px #716d6d;
+            margin: 30px;
+        }
+
+        .card-title {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            padding: 0 15px;
+        }
+
+        .card-body {
+            display: flex;
+            padding: 15px;
+        }
+
+        .card-footer {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+            justify-content: space-between;
+        }
+
+        .login-form {
+            width: 100%;
+        }
+
+        .input-controls {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .label-wrapper {
+            margin-bottom: 5px;
+            color: #777;
+        }
+        .input-wrapper input {
+            width: calc(100% - 10px);
+            height: 36px;
+        }
+
+        .error {
+            padding: 15px;
+            border-left: 3px solid red;
+            color: red;
+            background: #d820202e;
+            font-weight: 600;
+        }
+
+        .success {
+            background: #00ff55;
+            padding: 15px;
+            border-left: 3px solid darkgreen;
+            color: darkgreen;
+            font-weight: 600;
+        }
+
+        button.login-btn {
+            background: #3F51B5;
+            color: #fff;
+            padding: 10px;
+            border: 1px solid #3F51B5;
+            min-width: 120px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body style="margin: 0;">
+    <form class="login-form" action="/save-user" method="post">
+        <div class="main">
+                <div class="card">
+                    <div class="card-title">
+                        <h2 class="card-title-text">Registration</h2>
+                    </div>
+                    <div class="card-body">
+                            <div style="width: 100%;">
+                                <div class="input-controls">
+                                    <div class="label-wrapper">
+                                        <label>First Name</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <input name="first_name" required type="text">
+                                    </div>
+                                </div>
+                            <div class="input-controls">
+                                    <div class="label-wrapper">
+                                        <label>Last Name</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <input name="last_name" required type="text">
+                                    </div>
+                                </div>
+                            <div class="input-controls">
+                                    <div class="label-wrapper">
+                                        <label>Role</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <select name="role" required type="text">
+                                            <option value="Supervisor">Supervisor</option>
+                                            <option value="Data Entry">Data Entry</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-controls">
+                                    <div class="label-wrapper">
+                                        <label>Email Id</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <input name="email" required type="email" placeholder="Example: xyz@abc.com"
+                                        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$">
+                                    </div>
+                                </div>
+                                <div class="input-controls">
+                                    <div class="label-wrapper">
+                                        <label>Password</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <input name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required type="password"
+                                        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters">
+                                    </div>
+                                </div>
+
+                                    {% block alert %}
+                                    {% endblock %}
+                            </div>
+                    </div>
+                    <div class="card-footer">
+                         <div style="margin-right: 15px;">Already registered? <a href="/login-page">Login</a></div>
+                        <button type="submit" class="login-btn">Submit</button>
+                    </div>
+                </div>
+        </div>
+    </form>
+</body>
+</html>
