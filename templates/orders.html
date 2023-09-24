@@ -240,8 +240,8 @@
                 $("#products").val(order.product_name);
                 $("#productIdInput").val(order.product_id);
                 $("#quantity").val(order.product_qty);
-                $("#quantity").prop('disabled', true);
-                $("#orderStatus").prop('disabled', false);
+                $("#quantity").attr('readonly', true);
+                $("#orderStatus").attr('readonly', false);
                 productSelected();
             },
             error: function (error) {
@@ -256,8 +256,8 @@
         $("#orderForm")[0].reset();
         $("#orderForm [name=order_id]").remove();
         $("#orderNoText").remove();
-        $("#quantity").prop('disabled', false);
-        $("#orderStatus").prop('disabled', true);
+        $("#quantity").attr('readonly', false);
+        $("#orderStatus").attr('readonly', true);
     }
 </script>
 

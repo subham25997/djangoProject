@@ -143,7 +143,7 @@ def save_customer(request):
         if request.POST.get("customer_id") is not None:
             customer_id = request.POST["customer_id"]
         else:
-            if len(Customer.objects.filter(~Q(customer_id=request.POST["customer_id"])).filter(
+            if len(Customer.objects.filter(~Q(customer_id=request.POST.get("customer_id"))).filter(
                     email=request.POST["email"])) != 0:
                 context = {
                     "alert_type": "danger",
@@ -269,10 +269,10 @@ def create_order(request):
         form.customer_name = request.POST['customer_name']
         form.product_id = int(request.POST['product_id'])
         form.product_name = request.POST['product_name']
-        form.product_qty = request.POST['product_qty']
+        form.product_qty = request.POST.get("product_qty")
         form.contact_person = request.POST['contact_person']
         form.order_date = request.POST['order_date']
-        form.status = request.POST['status']
+        form.status = request.POST.get("status")
         form.created_by_id = user_info[0]
         form.created_by = user_info[2] + ' ' + user_info[3]
         menus = get_menus_for_this_role(request)
